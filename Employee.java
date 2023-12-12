@@ -31,6 +31,9 @@ public class Employee {
 		//creating the object for Employee class
 		Employee emp = new Employee();
 		
+		System.out.println("Employee Id::::" + emp.employeeId);		
+		System.out.println("Employee Name::::" + emp.name);
+		
 		//Calling the method
 		emp.assigningData(123, "Mahesh", "Software Engineer", 25000.00d);
 		
