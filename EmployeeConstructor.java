@@ -43,6 +43,8 @@ public class EmployeeConstructor {
 		//calling the displayData method
 		ec.displayData(); //0 && null
 		
+		System.out.println("EmployeeConstructor hashCode......" + ec.hashCode());
+		
 		System.out.println();
 		
 		//Creating the object for our class

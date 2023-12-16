@@ -50,5 +50,11 @@ public class Employee {
 		//calling the method to display the data
 		emp2.displayData();
 		
+		/*Class class1 = emp2.getClass();
+		Class superclass = class1.getSuperclass();
+		System.out.println(superclass.getName());*/
+		
+		System.out.println("Parent Class ::::" + emp2.getClass().getSuperclass().getName());
+		
 	}
 }
