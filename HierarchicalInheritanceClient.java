@@ -27,9 +27,5 @@ public class HierarchicalInheritanceClient {
 		//displaying data
 		cd.displayPersonalDetailsInfo();
 		cd.displayCustomerDetailsInfo();
-		
-		
-		
 	}
-
 }
