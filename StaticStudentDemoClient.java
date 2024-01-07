@@ -15,6 +15,9 @@ public class StaticStudentDemoClient {
 		
 		System.out.println("Square::::" + square(12));
 		System.out.println("Square::::" + StaticStudentDemoClient.square(12));
+		
+		System.out.println("Student Object sd :::::" + sd);
+		System.out.println("Student Object sd-1 :::::" + sd.toString());
 	}
 	
 	public static int square(int x) {
