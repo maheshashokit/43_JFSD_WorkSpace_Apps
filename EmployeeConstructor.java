@@ -29,6 +29,13 @@ public class EmployeeConstructor {
 		empName = employeeName;
 	}
 	
+	//Defining the constructor to copy the data from one object to another object
+	private EmployeeConstructor(EmployeeConstructor empConstructor) {
+		this.empId = empConstructor.empId;
+		this.empName = empConstructor.empName;
+		
+	}
+	
 	//Defining the method to display the data
 	public void displayData() {
 		System.out.println("Employee ID    :::::" + empId);
@@ -64,6 +71,11 @@ public class EmployeeConstructor {
 		EmployeeConstructor ec3 = new EmployeeConstructor("Ashok");
 		//calling the displayData Method
 		ec3.displayData();
+		
+		System.out.println();
+		//copy constructor
+		EmployeeConstructor ec4  = new EmployeeConstructor(ec1);
+		ec4.displayData();
 	}
 	
 

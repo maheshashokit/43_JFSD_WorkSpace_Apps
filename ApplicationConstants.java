@@ -7,9 +7,9 @@ public class ApplicationConstants {
 	
 	public static final String PASSWORD="Mahesh@123";
 	
+	public static final String USERNAMETITLE="Username :";	
 	
-	public static void main(Integer[] args) {
-		
-	}
+	public static final String PASSWORDTITLE="Password :";	
+	
 
 }
