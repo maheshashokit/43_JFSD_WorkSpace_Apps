@@ -1,6 +1,6 @@
 package com.ashokit.collections;
 
-public class Employee implements Comparable<Employee>{
+public class Employee1{
 	
 	private Integer empId;
 	
@@ -12,21 +12,21 @@ public class Employee implements Comparable<Employee>{
 	
 	private int age;
 
-	public Employee() {
+	public Employee1() {
 	}
 	
-	public Employee(Integer empId, String empName) {
+	public Employee1(Integer empId, String empName) {
 		this.empId = empId;
 		this.empName = empName;
 	}
 	
-	public Employee(Integer empId, String empName,String location) {
+	public Employee1(Integer empId, String empName,String location) {
 		this.empId = empId;
 		this.empName = empName;
 		this.location = location;
 	}
 	
-	public Employee(Integer empId, String empName,String location,String job, int age) {
+	public Employee1(Integer empId, String empName,String location,String job, int age) {
 		this.empId = empId;
 		this.empName = empName;
 		this.location = location;
@@ -74,11 +74,6 @@ public class Employee implements Comparable<Employee>{
 	
 	public String getJob() {
 		return job;
-	}
-	
-	@Override
-	public int compareTo(Employee o) {
-		return this.getEmpId().compareTo(o.getEmpId());
 	}
 	
 	@Override
