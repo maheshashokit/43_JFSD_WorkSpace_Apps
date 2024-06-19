@@ -65,6 +65,33 @@ public class SignUpDao {
 		return false;
 	}
 	
+	//Creating DAO Method to insert data into database
+		public boolean updateSignUpUser(SignUp signUp) {
+			try {
+				 //checking con object
+				 if(Objects.nonNull(con)) {
+					 //creating the PreparedStatement object
+					 pstmt = con.prepareStatement("update ashokit_signup set emailId=?,contactno=? where signup_id=?");
+					 
+					 //setting the values for PlaceHolders
+					 pstmt.setString(1, signUp.getUserEmail());
+					 pstmt.setString(2, signUp.getContactNo());
+					 pstmt.setString(3, signUp.getSignUpId());
+					 
+					 //executing the PreparedStatement
+					 int rowCount = pstmt.executeUpdate();
+					 
+					 //returning boolean value based on rowCount;
+					 return rowCount > 0;
+				 }
+				
+			}catch(SQLException e) {
+				e.printStackTrace();
+				return false;
+			}
+			return false;
+		}
+	
 	public List<SignUp> getAllSignUp(){
 		List<SignUp> signUpList = new ArrayList<>();
 		try {
@@ -74,7 +101,7 @@ public class SignUpDao {
 				stmt = con.createStatement();
 				
 				//executing the select Query
-				ResultSet rs = stmt.executeQuery("select username,emailId,contactno,courses from ashokit_signup");
+				ResultSet rs = stmt.executeQuery("select username,emailId,contactno,courses,signup_id from ashokit_signup");
 				
 				//processing the ResultSet object and preparing signup for each record
 				while(rs.next()) {
@@ -84,9 +111,10 @@ public class SignUpDao {
 					String emailId = rs.getString(2);
 					String contactNo = rs.getString(3);
 					String courses = rs.getString(4);
+					String signUpId = rs.getString(5);
 
 					//Preparing SignUp Object
-					SignUp signUp = new SignUp(uname, emailId, contactNo, courses);
+					SignUp signUp = new SignUp(uname, emailId, contactNo, courses,signUpId);
 					
 					//adding SignUp object to list object
 					signUpList.add(signUp);					
