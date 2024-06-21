@@ -127,4 +127,28 @@ public class SignUpDao {
 		}
 		return signUpList;
 	}
+	
+	public boolean deletingSignUp(String signUpId) {
+		try {
+			 //checking con object
+			 if(Objects.nonNull(con)) {
+				 //creating the PreparedStatement object
+				 pstmt = con.prepareStatement("delete from ashokit_signup where signup_id=?");
+				 
+				 //setting the values for PlaceHolders
+				 pstmt.setString(1, signUpId);
+				 
+				 //executing the PreparedStatement
+				 int rowCount = pstmt.executeUpdate();
+				 
+				 //returning boolean value based on rowCount;
+				 return rowCount > 0;
+			 }
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return false;
+	}
 }

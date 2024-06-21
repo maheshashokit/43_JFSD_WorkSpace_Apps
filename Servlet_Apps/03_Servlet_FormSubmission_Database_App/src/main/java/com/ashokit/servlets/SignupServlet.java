@@ -2,9 +2,7 @@ package com.ashokit.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 import com.ashokit.dao.SignUpDao;
@@ -28,23 +26,21 @@ public class SignupServlet extends GenericServlet {
 		//2.Getting Writer object
 		PrintWriter pw = response.getWriter();
 		
-		//3.capturing the form data via request parameters
+		//3.capturing the form data via request parameters(create & edit only)
 		String name = request.getParameter("fullname");
 		String userEmail = request.getParameter("userEmail");
 		String contactNo = request.getParameter("contactNo");
 		String courses = request.getParameter("courses");
-		//getting to know about action
+		//getting to know about action(Edit/Delete)
 		String action = request.getParameter("action");
 		String signUpId= request.getParameter("signUpId");
 		
+		System.out.println("Form Values::::" +String.format("%s%s%s%s",name,userEmail,contactNo,courses));
+		System.out.println("Form Actions Values::::" +String.format("%s%s",action,signUpId));
+		
 		//4.creating signup object to set form data
 		SignUp signUp=null;
-		if(Objects.nonNull(action) && "EDIT".equals(action.toUpperCase())) {
-			signUp = new SignUp(name, userEmail, contactNo, courses,signUpId);
-		}else {
-			signUp = new SignUp(name, userEmail, contactNo, courses);
-		}
-		
+
 		//5.Creating the SignupDao Object
 		SignUpDao signUpDao = new SignUpDao();
 		
@@ -52,14 +48,21 @@ public class SignupServlet extends GenericServlet {
 		boolean signupStatus = false;
 		
 		if(Objects.nonNull(action) && "EDIT".equals(action.toUpperCase())) {
+			signUp = new SignUp(name, userEmail, contactNo, courses,signUpId);
 			signupStatus = signUpDao.updateSignUpUser(signUp);
+			pw.println("<div style='text-align:center;color:red;'>Record Updated Into Database Successfully</div>");
+		}else if(Objects.nonNull(action) && "DELETE".equals(action.toUpperCase())){
+			signupStatus = signUpDao.deletingSignUp(signUpId);
+			pw.println("<div style='text-align:center;color:red;'>Record Deleted SuccessFully for SignUp::"+signUpId+"</div>");
 		}else {
+			//create
+			signUp = new SignUp(name, userEmail, contactNo, courses);
 			signupStatus = signUpDao.createSignUpUser(signUp);
+			pw.println("<div style='text-align:center;color:red;'>Record Saved Into Database Successfully</div>");
 		}
 		
 		//7.Preparing response sent back to client
 		if(signupStatus) {
-			pw.println("<div style='text-align:center;color:red;'>Record Saved Into Database Successfully</div>");
 			
 			//To get All records information from database
 			List<SignUp> allUsersData = signUpDao.getAllSignUp();
@@ -70,7 +73,9 @@ public class SignupServlet extends GenericServlet {
 			pw.println("<tbody>");
 			allUsersData.forEach((eachUser) ->{
 			    pw.println("<tr><td>"+eachUser.getFullName()+"</td><td>"+eachUser.getUserEmail()+"</td><td>"+eachUser.getContactNo()+"</td><td>"+eachUser.getCourses()+"</td>"
-			    		+ "<td><a href=http://localhost:2026/03_Servlet_FormSubmission/editDetailsServlet?signUpId="+eachUser.getSignUpId()+">|Edit|</a></td></tr>");
+			    		+ "<td><a href=http://localhost:2023/04_Servlet_Database_App/editDetailsServlet?signUpId="+eachUser.getSignUpId()+">|Edit|</a>"
+			    		+     "<a href=http://localhost:2023/04_Servlet_Database_App/signup?action=delete&signUpId="+eachUser.getSignUpId()+">|Delete|</a>"		
+			    		+ "</td></tr>");
 			});
 			pw.println("</tbody>");
 		}

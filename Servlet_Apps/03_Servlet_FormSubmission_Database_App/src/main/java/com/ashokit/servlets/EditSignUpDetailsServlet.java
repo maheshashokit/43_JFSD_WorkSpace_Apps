@@ -35,6 +35,7 @@ public class EditSignUpDetailsServlet extends HttpServlet {
 		
 		//convert into stream object
 		Optional<SignUp> signUpInfo = allSignUp.stream().filter(eachSignup -> signUpId.equals(eachSignup.getSignUpId())).findAny();
+		
 		if(signUpInfo.isPresent()) {
 			//getting particular SignUp record.
 			SignUp signUp = signUpInfo.get();
@@ -42,6 +43,7 @@ public class EditSignUpDetailsServlet extends HttpServlet {
 			//prepare the Edit Form
 			pw.println("<html>");
 			pw.println("<body>");
+			pw.println("<div style='text-align:center;color:red;'>Welcome To AshokIT For Signup Detail.....</div>");
 			pw.println("<form action='signup' method='post'>");
 			pw.println("<table align='center'>");
 			pw.println("<tr><td>Username</td><td><input type='text' name='fullname' value="+signUp.getFullName()+" readonly /></td></tr>");
