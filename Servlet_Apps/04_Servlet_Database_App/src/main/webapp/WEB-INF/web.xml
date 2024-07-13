@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+	<display-name>04_Servlet_Database_App</display-name>
+	<welcome-file-list>
+		<welcome-file>signup.html</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+	</welcome-file-list>
+	<context-param>
+		<param-name>Username</param-name>
+		<param-value>Mahesh</param-value>
+     </context-param>
+	<context-param>
+	   <param-name>Password</param-name>
+	   <param-value>Mahesh@123</param-value>
+	</context-param>
+	<servlet>
+		<description>Test</description>
+		
+		<display-name>SignupServlet</display-name>
+		<servlet-name>SignupServlet</servlet-name>
+		<servlet-class>com.ashokit.servlets.SignupServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SignupServlet</servlet-name>
+		<url-pattern>/signup</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<description></description>
+		
+		<display-name>EditSignUpDetailsServlet</display-name>
+		<servlet-name>EditSignUpDetailsServlet</servlet-name>
+		<servlet-class>com.ashokit.servlets.EditSignUpDetailsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EditSignUpDetailsServlet</servlet-name>
+		<url-pattern>/editDetailsServlet</url-pattern>
+	</servlet-mapping>
+	
+</web-app>
