@@ -1,0 +1,3 @@
+create table ashokit_users(user_id number primary key, name varchar2(70),email varchar2(60),country varchar2(100));
+
+create sequence ashokit_users_seq start with 1000 increment by 1;
